@@ -163,9 +163,11 @@ class _myHomePageState extends State<Select> {
 // TODO: implement build
     return new Scaffold(
       appBar: new AppBar(
+         automaticallyImplyLeading: false,
         title: isUpdating ? TextField(
             autofocus: true,
             controller: searchController,
+          
             onChanged: (text){
               refreshList();
             })

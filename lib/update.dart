@@ -1,3 +1,4 @@
+import 'convertidor.dart';
 import 'crud_operations.dart';
 import 'students.dart';
 import 'dart:async';
@@ -19,13 +20,12 @@ class _myHomePageState extends State<Update> {
   TextEditingController controller6 = TextEditingController();
   TextEditingController controller7 = TextEditingController();
   String name;
-  String photoName;
   String surname;
   String ap;
   String mat;
   String mail;
   String num;
-
+  String photoName;
   String valor;
   int currentUserId;
   int opcion;
@@ -70,32 +70,32 @@ class _myHomePageState extends State<Update> {
       formkey.currentState.save();
       //NOMBRE
       if (opcion==1) {
-        Student stu = Student(currentUserId, photoName,valor, surname, ap, mat, mail, num);
+        Student stu = Student(currentUserId,valor, surname, ap, mat, mail, num, photoName);
         dbHelper.update(stu);
       }
       //APELLIDO PATERNO
       else if (opcion==2) {
-        Student stu = Student(currentUserId, photoName,name, valor, ap, mat, mail, num);
+        Student stu = Student(currentUserId,name, valor, ap, mat, mail, num, photoName);
         dbHelper.update(stu);
       }
       //APELLIDO MATERNO
       else if (opcion==3) {
-        Student stu = Student(currentUserId, photoName,name, surname, valor, mat, mail, num);
+        Student stu = Student(currentUserId,name, surname, valor, mat, mail, num, photoName);
         dbHelper.update(stu);
       }
       //PHONE
       else if (opcion==4) {
-        Student stu = Student(currentUserId, photoName,name, surname, ap, mat, mail, valor);
+        Student stu = Student(currentUserId,name, surname, ap, mat, mail, valor, photoName);
         dbHelper.update(stu);
       }
       //EMAIL
       else if (opcion==5) {
-        Student stu = Student(currentUserId, photoName,name, surname, ap, mat, valor, num);
+        Student stu = Student(currentUserId,name, surname, ap, mat, valor, num, photoName);
         dbHelper.update(stu);
       }
       //MATRICULA
       else if (opcion==6) {
-        Student stu = Student(currentUserId, photoName, name, surname, ap, valor, mail, num);
+        Student stu = Student(currentUserId, name, surname, ap, valor, mail, num, photoName);
         dbHelper.update(stu);
       }
       cleanData();
@@ -107,7 +107,7 @@ class _myHomePageState extends State<Update> {
     if (formkey.currentState.validate()) {
       formkey.currentState.save();
       {
-        Student stu = Student(null, photoName,name, surname, ap, mat, mail, num);
+        Student stu = Student(null,name, surname, ap, mat, mail, num, photoName);
         dbHelper.insert(stu);
       }
       cleanData();
@@ -195,6 +195,9 @@ class _myHomePageState extends State<Update> {
           DataColumn(
             label: Text("Telefono"),
           ),
+         // DataColumn(
+           // label: Text("Foto"),
+          //),
         ],
         rows: Studentss.map((student) =>
             DataRow(cells: [
@@ -298,6 +301,7 @@ class _myHomePageState extends State<Update> {
                 });
                 controller4.text = student.num;
               }),
+              //DataCell(Convertir.imageFromBase64sString(student.photoName)),
             ])).toList(),
       ),
     );
@@ -329,6 +333,7 @@ class _myHomePageState extends State<Update> {
         title: Text('Actualizar Datos'),
         backgroundColor: Colors.deepPurple,
         centerTitle: true,
+         automaticallyImplyLeading: false,
       ),
       body: new Container(
         child: new Column(

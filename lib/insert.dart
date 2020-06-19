@@ -23,7 +23,6 @@ class _Insert extends State<insertar> {
   TextEditingController controller6 = TextEditingController();
   TextEditingController controller7 = TextEditingController();
   String name;
-
   String photoName;
   String surname;
   String ap;
@@ -37,7 +36,6 @@ class _Insert extends State<insertar> {
   final formkey = new GlobalKey<FormState>();
 
   String imagen;
-  File _imagen;
 
   @override
   void initState() {
@@ -99,7 +97,7 @@ class _Insert extends State<insertar> {
       refreshList();
     }
   }
-
+//Metodo para imagen
   pickImagefromGallery(BuildContext context) {
     ImagePicker.pickImage(source: ImageSource.gallery).then((imgFile) {
       String imgString = Convertir.base64String(imgFile.readAsBytesSync());
@@ -107,6 +105,7 @@ class _Insert extends State<insertar> {
       //bdHelper.insert(photo);
       //fotos();
       imagen = imgString;
+      //Funciona para la obtencion de imagen ya sea galeria o camera
       Navigator.of(context).pop();
       controller7.text = "Campo lleno";
       return imagen;
@@ -126,7 +125,7 @@ class _Insert extends State<insertar> {
     });
   }
 
-  // seleccionar imagen
+  // seleccionar imagen ya se camara o galeria
   Future<void> _selectfoto(BuildContext context) {
     return showDialog(
         context: context,
@@ -162,6 +161,7 @@ class _Insert extends State<insertar> {
         title: Text("Insertar Datos "),
         centerTitle: true,
         backgroundColor: Colors.deepPurple,
+         automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -173,16 +173,16 @@ class _Insert extends State<insertar> {
               mainAxisSize: MainAxisSize.min,
               verticalDirection: VerticalDirection.down,
               children: <Widget>[
-                /* Container(
+               /* Container(
                   height: 200.0,
                   width: 200.0,
                   color: Colors.grey,
                   child: imagen == null ? Text("Inserta una imagen",textAlign: TextAlign.center):
-                  (Convertir.imageFromBase64sString(imagen))
+                 (imgFile)
                   ),*/
-                /*CircleAvatar(
+               /* CircleAvatar(
                   radius: 88,
-                  backgroundImage: Image.memory(Convertir.imageFromBase64sString(imagen)),
+                  backgroundImage: Image.file(imgFile),
                 ),*/
                 TextFormField(
                   controller: controller7,

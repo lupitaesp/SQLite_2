@@ -19,7 +19,7 @@ class DBHelper {
   static const String MAIL = 'mail';
   static const String NUM = 'num';
   static const String TABLE = 'Students';
-  static const String DB_NAME = 'students6.db';
+  static const String DB_NAME = 'students12.db';
   static const String photoName = 'photoName';
 
 
@@ -62,6 +62,18 @@ class DBHelper {
     }
     return studentss;
   }
+
+
+  /* Future<List<Student>> _getStudent() async {
+    var dbClient = await db;
+    List<Map> maps = await dbClient.query(TABLE, columns: [Id, NAME, SURNAME, AP,MAT, MAIL, NUM,photoName]);
+    List<Student> studentss = [];
+    for (var h in jsonData) {
+      Student he = Student(h["Id"], h["NAME"], h["SURNAME"], h["AP"],
+          h["MAT"], h["MAI"], h["NUM"],h["photoName"]);
+      Student.add(he);
+    return studentss;
+  }*/
 
   /*Future<List<Student>> getPhotos () async{
     var dbClient = await db;

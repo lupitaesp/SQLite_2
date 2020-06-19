@@ -154,6 +154,7 @@ class _mydata extends State<eliminar> {
         title: Text("Eliminar Datos"),
         centerTitle: true,
         backgroundColor: Colors.deepPurple,
+         automaticallyImplyLeading: false,
       ),
       body: new Container(
         child: new Column(

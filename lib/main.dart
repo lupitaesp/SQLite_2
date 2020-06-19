@@ -10,6 +10,7 @@ import 'update.dart';
 import 'select.dart';
 import 'busqueda.dart';
 
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -108,26 +109,21 @@ class _myHomePageState extends State<homePage> {
           DataColumn(
             label: Text("Phone"),
           ),
-          DataColumn(
-            label: Text("Photo"),
-          ),
+          //DataColumn(
+            //label: Text("Photo"),
+       //   ),
         ],
         rows: Studentss.map((student) => DataRow(cells: [
           DataCell(Text(student.controlum.toString())),
           DataCell(Text(student.mat.toString().toUpperCase())),
-          DataCell(Text(student.name.toString().toUpperCase()), onTap: () {
-            setState(() {
-              isUpdating = true;
-              currentUserId = student.controlum;
-            });
-            controller1.text = student.name;
-          }),
+          DataCell(Text(student.name.toString().toUpperCase())),
           //CONVIERTE LETRAS
           DataCell(Text(student.surname.toString().toUpperCase())),
           DataCell(Text(student.ap.toString().toUpperCase())),
           DataCell(Text(student.mail.toString().toUpperCase())),
           DataCell(Text(student.num.toString().toUpperCase())),
-         DataCell(Convertir.imageFromBase64sString(student.photoName)),
+         //Muestra la imagen
+         //DataCell(Convertir.imageFromBase64sString(student.photoName)),
         ])).toList(),
       ),
     );
@@ -184,7 +180,7 @@ class _myHomePageState extends State<homePage> {
                     context, MaterialPageRoute(builder: (context) => insertar()));
               },
             ),
-            ListTile(
+           ListTile(
               leading: Icon(Icons.update, color: Colors.deepPurpleAccent),
               title: Text('ACTUALIZAR DATOS'),
               onTap: () {
@@ -200,14 +196,14 @@ class _myHomePageState extends State<homePage> {
                     context, MaterialPageRoute(builder: (context) => Select()));
               },
             ),
-          /*  ListTile(
-              leading: Icon(Icons.delete, color: Colors.deepPurpleAccent),
+            ListTile(
+              leading: Icon(Icons.refresh, color: Colors.deepPurpleAccent),
               title: Text('CONSULTAR REGISTROS'),
               onTap: () {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => busqueda()));
               },
-            ),*/
+            ),
             ListTile(
               leading: Icon(Icons.delete, color: Colors.deepPurpleAccent),
               title: Text('ELIMINAR DATOS'),
