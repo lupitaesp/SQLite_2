@@ -65,6 +65,7 @@ class _mydata extends State<eliminar> {
       scrollDirection: Axis.horizontal,
       child: DataTable(
         columns: [
+          DataColumn(label: Text("Delete")),
           DataColumn(
             label: Text("Control"),
           ),
@@ -86,10 +87,18 @@ class _mydata extends State<eliminar> {
           DataColumn(
             label: Text("Numero"),
           ),
-          DataColumn(label: Text("Delete")),
+        
           // DataColumn(label: Text("Update"))
         ],
         rows: Studentss.map((student) => DataRow(cells: [
+          DataCell(IconButton(
+            icon: Icon(Icons.delete),
+            onPressed: () {
+              bdHelper.delete(student.controlum);
+              refreshList();
+              guardar();
+            },
+          )),
           DataCell(Text(student.controlum.toString())),
           DataCell(Text(student.name.toUpperCase()), onTap: () {
             setState(() {
@@ -103,14 +112,6 @@ class _mydata extends State<eliminar> {
           DataCell(Text(student.mat.toUpperCase())),
           DataCell(Text(student.mail.toUpperCase())),
           DataCell(Text(student.num.toUpperCase())),
-          DataCell(IconButton(
-            icon: Icon(Icons.delete),
-            onPressed: () {
-              bdHelper.delete(student.controlum);
-              refreshList();
-              guardar();
-            },
-          ))
         ])).toList(),
       ),
     );

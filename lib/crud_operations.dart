@@ -19,7 +19,7 @@ class DBHelper {
   static const String MAIL = 'mail';
   static const String NUM = 'num';
   static const String TABLE = 'Students';
-  static const String DB_NAME = 'students12.db';
+  static const String DB_NAME = 'students13.db';
   static const String photoName = 'photoName';
 
 
